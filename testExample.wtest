@@ -1,9 +1,90 @@
-import example.pepita
+import example.*
 
-describe "group of tests for pepita" {
+const personaPrueba1 = new Persona(edad=20)
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+const emocionFuria = new Furia(eventosExperimentados = 100)
+const emocionAlegria = new Alegria(intensidad=200,eventosExperimentados=100)
+
+
+
+describe "Test de personas y emociones" {
+  test "persona es adolescente" {
+
+    assert.that(personaPrueba1.esAdolescente())
+    
   }
 
+  test "persona no esta por explotar emocionalmente"
+  { 
+    personaPrueba1.agregarEmocion(emocionFuria)
+    personaPrueba1.agregarEmocion(emocionAlegria)
+    emocionFuria.aprenderPalabrota("insultooo")
+    assert.that(!personaPrueba1.estaPorExplotar())
+  } 
+
+    test "persona esta por explotar emocionalmente"
+  { 
+    personaPrueba1.agregarEmocion(emocionFuria)
+    personaPrueba1.agregarEmocion(emocionAlegria)
+    emocionFuria.aprenderPalabrota("insultooo")
+    assert.that(personaPrueba1.estaPorExplotar())
+  } 
+
+const eventoPrueba = new Evento(impacto = 100,descripcion = "evento de prueba")
+    test "persona vive evento"
+{ 
+    personaPrueba1.agregarEmocion(emocionFuria)
+    personaPrueba1.agregarEmocion(emocionAlegria)
+    emocionFuria.aprenderPalabrota("insultooo")
+    personaPrueba1.vivirEvento(eventoPrueba)
+    assert.equals(101, emocionFuria.eventosExperimentados())
+    assert.equals(101, emocionAlegria.eventosExperimentados())
+    assert.equals(0, emocionFuria.intensidad())
+    assert.equals(100, emocionAlegria.intensidad())
+    
+  } 
+
+}
+
+describe "Test de grupo" {
+
+const personaPrueba1 = new Persona(edad=20)
+
+const emocionFuria1 = new Furia(eventosExperimentados = 100)
+const emocionAlegria1 = new Alegria(intensidad=200,eventosExperimentados=100)
+
+const personaPrueba2 = new Persona(edad=20)
+
+const emocionAlegria2 = new Alegria(intensidad=200,eventosExperimentados=100)
+const emocionTemor2 = new Emocion(intensidad = 200,eventosExperimentados=201)
+
+
+
+
+  test "integrantes viven evento" {
+
+    const grupoPrueba = new Grupo(personas=[personaPrueba1,personaPrueba2])
+    const eventoPrueba = new Evento(impacto = 100,descripcion = "evento de prueba")
+
+
+personaPrueba1.agregarEmocion(emocionFuria1)
+personaPrueba1.agregarEmocion(emocionAlegria1)
+personaPrueba2.agregarEmocion(emocionAlegria2)
+personaPrueba2.agregarEmocion(emocionTemor2)
+
+emocionFuria1.aprenderPalabrota("insultooo")
+
+grupoPrueba.vivirEventoGrupal(eventoPrueba)
+
+assert.equals(101, emocionFuria1.eventosExperimentados())
+assert.equals(101, emocionAlegria1.eventosExperimentados())
+assert.equals(0, emocionFuria1.intensidad())
+assert.equals(100, emocionAlegria1.intensidad())
+
+assert.equals(101, emocionAlegria2.eventosExperimentados())
+assert.equals(202, emocionTemor2.eventosExperimentados())
+assert.equals(100, emocionAlegria2.intensidad())
+assert.equals(100, emocionTemor2.intensidad())
+
+  }
 }
