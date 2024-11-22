@@ -1,6 +1,6 @@
 import example.*
 
-const personaPrueba1 = new Persona(edad=20)
+const personaPrueba1 = new Persona(edad=16)
 
 const emocionFuria = new Furia(eventosExperimentados = 100)
 const emocionAlegria = new Alegria(intensidad=200,eventosExperimentados=100)
@@ -18,8 +18,7 @@ describe "Test de personas y emociones" {
   { 
     personaPrueba1.agregarEmocion(emocionFuria)
     personaPrueba1.agregarEmocion(emocionAlegria)
-    emocionFuria.aprenderPalabrota("insultooo")
-    assert.that(!personaPrueba1.estaPorExplotar())
+    assert.that(not(personaPrueba1.estaPorExplotar()))
   } 
 
     test "persona esta por explotar emocionalmente"
