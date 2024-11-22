@@ -126,7 +126,7 @@ class Ansiedad inherits Emocion()
 
     override method liberarse(evento)
     {
-        situacionesAnsiosasAcumuladas = 0
+        situacionesAnsiosasAcumuladas = 0 // se tranquiliza y su contador de situaciones ansiosas se vuelve 0
         self.cambiarIntensidad(intensidad - evento.impacto())
         puedeLiberarseEnProximoEvento = false
 
@@ -134,14 +134,14 @@ class Ansiedad inherits Emocion()
     }
 }
 
-/* Utilizo la herencia ya que las emociones tienen caracteristicas comunes pero cada una sabe 
+/* Utilizo la herencia ya que las emociones tienen caracteristicas comunes; pero cada una sabe 
 como saber si puede liberarse y de ser el caso como hacerlo. Ante el mismo mensaje de liberarse ante un evento cada emocion
 sabe como debe hacerlo y lo hacen de forma distinta, es ahi donde se aplica el polimorfismo
  */
 
 class Grupo
 {
-    const personas = []
+    const personas = #{}
 
     method vivirEventoGrupal(evento)
     {
